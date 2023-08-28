@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Snake extends BaseObject {
-    int BodyParts = 7;
+    int BodyParts = 3;
     Color snakeColor = Color.pink;
     directions direction =  directions.Right;
     public ArrayList<Point> datalist = new ArrayList<>();
@@ -24,8 +24,9 @@ public class Snake extends BaseObject {
     @Override
     public void draw(Graphics g) {
         g.setColor(snakeColor);
-        for (Point p : datalist)
-            g.fillRect(p.x, p.y, UNIT_SIZE, UNIT_SIZE);
+        //for (Point p : datalist)
+        for (int i = 0; i < datalist.size(); i++)
+            g.fillRect(datalist.get(i).x, datalist.get(i).y, UNIT_SIZE, UNIT_SIZE);
     }
     public void move() {
         Point p = new Point(position);
@@ -67,9 +68,6 @@ public class Snake extends BaseObject {
                 if (direction != directions.Up)
                     direction = directions.Down;
                 break;
-            case KeyEvent.VK_ESCAPE:
-                System.out.println("Get out");
-                break;
         }
     }
     @Override
@@ -77,6 +75,13 @@ public class Snake extends BaseObject {
         if (obj instanceof  Apple) {
             datalist.add(lastPosition);
             GamePanel.removePointList(lastPosition);
+        }
+        else if (obj instanceof Bomb) {
+            datalist.remove(datalist.size() - 1);
+            GamePanel.addPointlist(lastPosition);
+            this.BodyParts--;
+            if (datalist.size() == 1)
+                GamePanel.running = false;
         }
     }
     public void corpCollision() {

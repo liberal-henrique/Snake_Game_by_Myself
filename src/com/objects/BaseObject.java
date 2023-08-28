@@ -12,5 +12,6 @@ public class BaseObject implements ElementBasic, Collision {
     }
     @Override
     public void onCollision(BaseObject obj) {
+
     }
 }
