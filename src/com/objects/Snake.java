@@ -83,6 +83,9 @@ public class Snake extends BaseObject {
             if (datalist.size() == 1)
                 GamePanel.running = false;
         }
+        else if (obj instanceof Wall) {
+            GamePanel.running = false;
+        }
     }
     public void corpCollision() {
         Point headPoint = datalist.get(0);

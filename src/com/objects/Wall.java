@@ -9,7 +9,9 @@ import java.util.TimerTask;
 public class Wall extends BaseObject implements ElementBasic {
     public Wall() {
         color = Color.GRAY;
-        position = GamePanel.getWallPointsRandomly();
+        if (!GamePanel.cornerCases.isEmpty()) {
+            position = GamePanel.getWallPointsRandomly();
+        }
     }
     public void effect() {
     }

@@ -12,6 +12,7 @@ public class Apple extends Collectable {
     public void effect() {
         position = GamePanel.getPointRandomly();
         GamePanel.removePointList(position);
+        System.out.println(position);
     }
 
 }
